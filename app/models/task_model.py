@@ -25,6 +25,13 @@ class Task:
         self.task_content = task_content
         self.id = str(uuid.uuid4())
 
+    def get_all_tasks():
+        tasks = list(db.tasks.find())
+        for key in tasks:
+            del key["_id"]
+
+        return tasks
+
     def create_and_save_task(self):
         # TODO: treat exceptions and failures
 
@@ -41,10 +48,16 @@ class Task:
         return {"msg": f'{task} deleted with success'}
 
     def delete_all_tasks_by_boolean(delete_all_tasks):
-
+        # TODO: not working
         task = db.tasks.delete_many({"task_done": delete_all_tasks})
 
         return {"msg": f'{task} erased with success'}, 200
 
-    def update_task_by_id():
-        ...
+    def update_task_by_id(id, new_content):
+        # TODO: treat exceptions and failures
+        task = db.tasks.update_one(
+            {"id": id},
+            {"$set": new_content}
+            )
+
+        return task
