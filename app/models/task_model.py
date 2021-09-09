@@ -16,7 +16,6 @@ client = MongoClient(
 
 # generate and create mongo DB connection
 db = client[os.getenv('DATABASE_NAME')]
-# TODO: choose a name for coopers.collection and create it
 
 
 class Task:
@@ -48,7 +47,7 @@ class Task:
         return {"msg": f'{task} deleted with success'}
 
     def delete_all_tasks_by_boolean(delete_all_tasks):
-        # TODO: not working
+
         task = db.tasks.delete_many({"task_done": delete_all_tasks})
 
         return {"msg": f'{task} erased with success'}, 200
