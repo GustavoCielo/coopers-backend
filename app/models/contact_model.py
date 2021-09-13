@@ -16,7 +16,7 @@ db = client[os.getenv('DATABASE_NAME')]
 
 
 class Contact:
-    def __init__(self, name: str, email: str, telephone: int, message: str):
+    def __init__(self, name: str, email: str, telephone: str, message: str):
         self.name = name
         self.email = email
         self.telephone = telephone

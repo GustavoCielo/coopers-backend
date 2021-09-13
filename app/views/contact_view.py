@@ -6,12 +6,9 @@ def init_app(app: Flask):
 
     @app.post("/form")
     def post_form_data():
-        name = request.form.get("name")
-        email = request.form.get("email")
-        telephone = request.form.get("telephone")
-        message = request.form.get("message")
+        data = request.get_json()
 
-        contact = Contact(name, email, telephone, message)
+        contact = Contact(**data)
         contact = contact.save_contact()
 
         return "Contact saved with success", 200
