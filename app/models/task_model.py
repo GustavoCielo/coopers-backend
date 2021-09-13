@@ -54,6 +54,7 @@ class Task:
 
     def update_task_by_id(id, new_content):
         # TODO: treat exceptions and failures
+        print(new_content)
         task = db.tasks.update_one(
             {"id": id},
             {"$set": new_content}
